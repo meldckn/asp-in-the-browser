@@ -29,12 +29,11 @@ var clingon = (function () {
         });
 
     }
-    
+
     /* 
-     * 
      * Takes an Answer Set Program to solve and a callback function to call when it's done
      */
-    function groundAndSolve (code) { //, callback) {
+    function groundAndSolve (code, callback) {
     
         var numSolutions = 3; // Max number of solutions to find (0 for all)
     
@@ -49,7 +48,8 @@ var clingon = (function () {
             console.log("solving...");
             Clasp.solveAsync([program, solverArgs], function(result) {
     
-                console.log("done. Result:", result);
+                // Give the result back to the given callback function to deal with
+                callback(result);
 
                 //console.log("done " + result.Witnesses.length);
                 /*
